@@ -1,0 +1,9 @@
+server:
+  port: 7030
+  
+spring:  datasource:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
+  application:
+    name: author-service
