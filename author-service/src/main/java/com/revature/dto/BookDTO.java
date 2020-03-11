@@ -1,46 +1,20 @@
-package com.revature.models;
+package com.revature.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-
-import org.hibernate.validator.constraints.Length;
-
-@Entity
-public class Book {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+/*
+ * BASE - Basic Availability, Soft State, Eventual Consistency
+ * 
+ * DTO - Data Transfer Object - Some POJO that defines the structure of
+ * transferred data, which is not directly an entity itself.
+ */
+public class BookDTO {
 	private int id;
-
-	@Length(min = 10, max = 13)
 	private String isbn;
-
-	@Min(1)
-	@Column(name = "total_pages")
 	private Integer totalPages;
-
-	@NotBlank
 	private String title;
-
-	@Column(name = "release_date")
 	private LocalDate releaseDate;
-
-	@Column(name="author_id")
-	private Integer authorId = 1;
-	
-	public Integer getAuthorId() {
-		return authorId;
-	}
-
-	public void setAuthorId(Integer authorId) {
-		this.authorId = authorId;
-	}
+	private Integer authorId;
 
 	public int getId() {
 		return id;
@@ -82,10 +56,19 @@ public class Book {
 		this.releaseDate = releaseDate;
 	}
 
+	public Integer getAuthorId() {
+		return authorId;
+	}
+
+	public void setAuthorId(Integer authorId) {
+		this.authorId = authorId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((authorId == null) ? 0 : authorId.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
 		result = prime * result + ((releaseDate == null) ? 0 : releaseDate.hashCode());
@@ -102,7 +85,12 @@ public class Book {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Book other = (Book) obj;
+		BookDTO other = (BookDTO) obj;
+		if (authorId == null) {
+			if (other.authorId != null)
+				return false;
+		} else if (!authorId.equals(other.authorId))
+			return false;
 		if (id != other.id)
 			return false;
 		if (isbn == null) {
@@ -130,12 +118,11 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", isbn=" + isbn + ", totalPages=" + totalPages + ", title=" + title
-				+ ", releaseDate=" + releaseDate + "]";
+		return "BookDTO [id=" + id + ", isbn=" + isbn + ", totalPages=" + totalPages + ", title=" + title
+				+ ", releaseDate=" + releaseDate + ", authorId=" + authorId + "]";
 	}
 
-	public Book(int id, @Length(min = 10, max = 13) String isbn, @Min(1) Integer totalPages, @NotBlank String title,
-			LocalDate releaseDate, Integer authorId) {
+	public BookDTO(int id, String isbn, Integer totalPages, String title, LocalDate releaseDate, Integer authorId) {
 		super();
 		this.id = id;
 		this.isbn = isbn;
@@ -145,8 +132,7 @@ public class Book {
 		this.authorId = authorId;
 	}
 
-	public Book() {
+	public BookDTO() {
 		super();
 	}
-
 }

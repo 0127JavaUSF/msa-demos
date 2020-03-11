@@ -2,4 +2,4 @@ server:  port: 8080
 
 spring:
   application:
-    name: gateway-service    zuul:  routes:#   Any requests sent that match /hello/** will be routed to the hello-service    hello-service: /hello/**    book-service: /books/**
+    name: gateway-service    zuul:  routes:#   Any requests sent that match /hello/** will be routed to the hello-service    hello-service: /hello/**    book-service: /books/**    author-service: /authors/**

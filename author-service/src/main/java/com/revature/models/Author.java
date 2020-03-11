@@ -1,13 +1,17 @@
 package com.revature.models;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.constraints.Past;
+
+import com.revature.dto.BookDTO;
 
 @Entity
 public class Author {
@@ -24,6 +28,17 @@ public class Author {
 
 	@Column(name = "date_of_death")
 	private LocalDate dateOfDeath;
+
+	@Transient
+	private List<BookDTO> booksWritten;
+	
+	public List<BookDTO> getBooksWritten() {
+		return booksWritten;
+	}
+
+	public void setBooksWritten(List<BookDTO> booksWritten) {
+		this.booksWritten = booksWritten;
+	}
 
 	public int getId() {
 		return id;
