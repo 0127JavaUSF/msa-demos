@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: config-service
+  profiles:
+    active:
+      - native
+#     The native profile configures the config service to serve configuration details
+#     from its own classpath (in src/main/resources > config). The default 
+#     serving style is to use a Git repo as the backend for configuration. I'm
+#     not doing that, only because it's hard for you guys to access directly.
+
+server:
+  port: 8888

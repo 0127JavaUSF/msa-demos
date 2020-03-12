@@ -1,13 +1,0 @@
-server:
-  port: 7030
-  
-spring:  datasource:
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    url: ${DB_URL}
-  jpa:
-    hibernate:      ddl-auto: update
-  application:
-    name: author-service
-  profiles:
-    active: feignclient

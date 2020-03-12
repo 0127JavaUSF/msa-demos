@@ -1,0 +1,9 @@
+server:
+  port: 8080
+    
+zuul:
+  routes:
+#   Any requests sent that match /hello/** will be routed to the hello-service
+    hello-service: /hello/**
+    book-service: /books/**
+    author-service: /authors/**
