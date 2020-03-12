@@ -1,6 +1,6 @@
 package com.revature.controllers;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,10 +35,17 @@ public class BookController {
 		return bookService.findById(id);
 	}
 	
-	@GetMapping
+	@GetMapping("/")
 	public Page<Book> findBookPaged(Pageable pageable) {
 		return bookService.findBooks(pageable);
 	}
+	
+	@GetMapping("/author/{id}")
+	public List<Book> findBooksByAuthorId(@PathVariable int id) {
+		return bookService.findBooksByAuthorId(id);
+	}
+	
+	
 	
 	@ExceptionHandler(HttpClientErrorException.class)
 	public ResponseEntity<String> handleClientError(HttpClientErrorException e) {

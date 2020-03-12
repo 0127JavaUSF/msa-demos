@@ -1,5 +1,7 @@
 package com.revature.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,4 +37,11 @@ public class BookService {
 		this.bookRepository = bookRepository;
 	}
 
+	public List<Book> findBooksByAuthorId(int id) {
+		return this.bookRepository.findBookByAuthorId(id);
+	}
+
+	void afterPropertiesSet() {
+		System.out.println("Feign Client initialized");
+	}
 }

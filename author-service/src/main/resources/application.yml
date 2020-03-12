@@ -9,3 +9,5 @@ spring:  datasource:
     hibernate:      ddl-auto: update
   application:
     name: author-service
+  profiles:
+    active: feignclient

@@ -34,7 +34,7 @@ public class AuthorService {
 				.orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
 		
 		// Attempt to retrieve books for this author
-		List<BookDTO> books = this.bookClient.getBooksByAuthorId(author.getId());
+		List<BookDTO> books = this.bookClient.findBooksByAuthorId(author.getId());
 		author.setBooksWritten(books);
 		
 		return author;
