@@ -44,4 +44,8 @@ public class BookService {
 	void afterPropertiesSet() {
 		System.out.println("Feign Client initialized");
 	}
+	
+	public void deleteBooksByAuthorId(int authorId) {
+		bookRepository.deleteByAuthorId(authorId);
+	}
 }
